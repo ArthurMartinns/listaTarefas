@@ -18,6 +18,11 @@ function App() {
     }
   };
 
+  const onDelete = (index: number) => {
+    const updatedTask = task.filter((_, i) => i !== index)
+    setTask(updatedTask)
+  } 
+
   return (
     <>
       <S.Container>
@@ -36,7 +41,10 @@ function App() {
         </S.Header>
         <S.Lista>
           {task.map((tarefa, index) => (
-            <li key={index}>{tarefa}</li>
+            <>
+              <li key={index}>{tarefa}</li>
+              <button onClick={() => onDelete(index)}>Apagar</button>
+            </>
           ))}
         </S.Lista>
       </S.Container>
