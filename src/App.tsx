@@ -1,5 +1,6 @@
 import * as S from './App.style';
 import { ChangeEvent, FormEvent, useState } from "react";
+import { IoMdClose } from "react-icons/io";
 
 function App() {
   const [tarefa, setTarefa] = useState('');
@@ -21,29 +22,35 @@ function App() {
   const onDelete = (index: number) => {
     const updatedTask = task.filter((_, i) => i !== index)
     setTask(updatedTask)
-  } 
+  }
 
   return (
     <>
       <S.Container>
         <S.Header>
-          <h1>Lista de Tarefas</h1>
+          <h2>Lista de Tarefas</h2>
 
           <form onSubmit={onSubmit}>
-            <input
+            <S.input
               type="text"
               value={tarefa}
               onChange={onTaskChange}
               placeholder="Digite uma tarefa"
             />
-            <button type="submit">+</button>
+            <S.plus
+              type="submit"
+            >
+              +
+            </S.plus>
           </form>
         </S.Header>
         <S.Lista>
           {task.map((tarefa, index) => (
             <>
-              <li key={index}>{tarefa}</li>
-              <button onClick={() => onDelete(index)}>Apagar</button>
+              <S.ListItem>
+                <li key={index}>{tarefa}</li>
+                <IoMdClose onClick={() => onDelete(index)} />
+              </S.ListItem>
             </>
           ))}
         </S.Lista>
