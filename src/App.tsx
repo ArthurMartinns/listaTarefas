@@ -1,6 +1,8 @@
 import * as S from './App.style';
 import { ChangeEvent, FormEvent, useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import Header from './components/Header/header';
+import Container from './components/Container/container';
 
 function App() {
   const [tarefa, setTarefa] = useState('');
@@ -27,33 +29,34 @@ function App() {
   return (
     <>
       <S.Container>
-        <S.Header>
-          <h2>Lista de Tarefas</h2>
-
-          <form onSubmit={onSubmit}>
-            <S.input
-              type="text"
-              value={tarefa}
-              onChange={onTaskChange}
-              placeholder="Digite uma tarefa"
-            />
-            <S.plus
-              type="submit"
-            >
-              +
-            </S.plus>
-          </form>
-        </S.Header>
-        <S.Lista>
-          {task.map((tarefa, index) => (
-            <>
-              <S.ListItem>
-                <li key={index}>{tarefa}</li>
-                <IoMdClose onClick={() => onDelete(index)} />
-              </S.ListItem>
-            </>
-          ))}
-        </S.Lista>
+          <Header/>
+          <Container>
+            <S.Nav>
+              <form style={{width: '100%', display: 'flex', justifyContent: 'space-between'}} onSubmit={onSubmit}>
+                <S.input
+                  type="text"
+                  value={tarefa}
+                  onChange={onTaskChange}
+                  placeholder="Digite uma tarefa"
+                />
+                <S.plus
+                  type="submit"
+                >
+                  Adicionar tarefa
+                </S.plus>
+              </form>
+            </S.Nav>
+          <S.Lista>
+            {task.map((tarefa, index) => (
+              <>
+                <S.ListItem>
+                  <li key={index}>{tarefa}</li>
+                  <IoMdClose onClick={() => onDelete(index)} cursor={'pointer'}/>
+                </S.ListItem>
+              </>
+            ))}
+          </S.Lista>
+          </Container>
       </S.Container>
     </>
   );
