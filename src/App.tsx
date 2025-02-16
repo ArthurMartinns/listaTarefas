@@ -32,7 +32,7 @@ function App() {
           <Header/>
           <Container>
             <S.Nav>
-              <form style={{width: '100%', display: 'flex', justifyContent: 'space-between'}} onSubmit={onSubmit}>
+              <form onSubmit={onSubmit}>
                 <S.input
                   type="text"
                   value={tarefa}

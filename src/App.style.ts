@@ -13,6 +13,12 @@ export const Nav = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content:space-between;
+
+    > form {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
 `
 
 export const Lista = styled.ul`
