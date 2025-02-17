@@ -65,3 +65,7 @@ export const plus = styled.button`
     font-family: "Roboto Slab", serif;
     cursor: pointer;
 `
+
+export const Form = styled.form`
+
+`

@@ -11,11 +11,11 @@ function App() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (tarefa == '') return; 
-    
+    if (tarefa == '') return;
+
     setTask((prevTasks) => [...prevTasks, tarefa]);
     setTarefa('');
-    
+
   };
 
   const onDelete = (index: number) => {
@@ -26,34 +26,34 @@ function App() {
   return (
     <>
       <S.Container>
-          <Header/>
-          <Container>
-            <S.Nav>
-              <form onSubmit={onSubmit}>
-                <S.input
-                  type="text"
-                  value={tarefa}
-                  onChange={e => setTarefa(e.target.value)}
-                  placeholder="Digite uma tarefa"
-                />
-                <S.plus
-                  type="submit"
-                >
-                  Adicionar tarefa
-                </S.plus>
-              </form>
-            </S.Nav>
+        <Header />
+        <Container>
+          <S.Nav>
+            <S.Form onSubmit={onSubmit}>
+              <S.input
+                type="text"
+                value={tarefa}
+                onChange={e => setTarefa(e.target.value)}
+                placeholder="Digite uma tarefa"
+              />
+              <S.plus
+                type="submit"
+              >
+                Adicionar tarefa
+              </S.plus>
+            </S.Form>
+          </S.Nav>
           <S.Lista>
             {task.map((tarefa, index) => (
               <>
                 <S.ListItem>
                   <li key={index}>{tarefa}</li>
-                  <IoMdClose onClick={() => onDelete(index)} cursor={'pointer'}/>
+                  <IoMdClose onClick={() => onDelete(index)} cursor={'pointer'} />
                 </S.ListItem>
               </>
             ))}
           </S.Lista>
-          </Container>
+        </Container>
       </S.Container>
     </>
   );
