@@ -5,56 +5,60 @@ import Header from './components/Header/header';
 import Container from './components/Container/container';
 import ListItem from './components/ListItem/list-item';
 
+interface Task {
+  id: number;
+  title: string;
+}
+
 function App() {
   const [tarefa, setTarefa] = useState('');
-  const [task, setTask] = useState<string[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (tarefa == '') return; 
-    
-    setTask((prevTasks) => [...prevTasks, tarefa]);
+    if (tarefa.trim() === '') return; 
+
+    const newTask: Task = {
+      id: Date.now(),
+      title: tarefa.trim(),
+    };
+
+    setTasks((prevTasks) => [...prevTasks, newTask]);
     setTarefa('');
-    
   };
 
-  const onDelete = (index: number) => {
-    const updatedTask = task.filter((_, i) => i !== index)
-    setTask(updatedTask)
-  }
+  const onDelete = (id: number) => {
+    setTasks((prevTasks) => prevTasks.filter(task => task.id !== id));
+  };
 
   return (
-    <>
-      <S.Container>
-          <Header/>
-          <Container>
-            <S.Nav>
-              <form onSubmit={onSubmit}>
-                <S.input
-                  type="text"
-                  value={tarefa}
-                  onChange={e => setTarefa(e.target.value)}
-                  placeholder="Digite uma tarefa"
-                />
-                <S.plus
-                  type="submit"
-                >
-                  Adicionar tarefa
-                </S.plus>
-              </form>
-            </S.Nav>
-          <S.Lista>
-            {task.map((tarefa, index) => (
-              <ListItem>
-                  <li key={index}>{tarefa}</li>
-                  <IoMdClose onClick={() => onDelete(index)} cursor={'pointer'}/>
-              </ListItem>
-            ))}
-          </S.Lista>
-          </Container>
-      </S.Container>
-    </>
+    <S.Container>
+      <Header />
+      <Container>
+        <S.Nav>
+          <form onSubmit={onSubmit}>
+            <S.input
+              type="text"
+              value={tarefa}
+              onChange={e => setTarefa(e.target.value)}
+              placeholder="Digite uma tarefa"
+            />
+            <S.plus type="submit">
+              Adicionar tarefa
+            </S.plus>
+          </form>
+        </S.Nav>
+        <S.Lista>
+          {tasks.map((task) => (
+            <ListItem key={task.id}>
+              <li>{task.title}</li>
+              <IoMdClose onClick={() => onDelete(task.id)} cursor="pointer" />
+            </ListItem>
+          ))}
+        </S.Lista>
+      </Container>
+    </S.Container>
   );
 }
 
