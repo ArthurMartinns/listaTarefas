@@ -35,17 +35,7 @@ export const Lista = styled.ul`
 `
 
 export const ListItem = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem;
-
-    > li {
-        list-style: none;
-    }
-    background-color: #fff;
+   
 `
 
 export const input = styled.input`
