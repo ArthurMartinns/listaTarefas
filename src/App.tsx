@@ -1,12 +1,17 @@
 import * as S from './App.style';
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Header from './components/Header/header';
 import Container from './components/Container/container';
 
 function App() {
   const [tarefa, setTarefa] = useState('');
-  const [task, setTask] = useState<string[]>([]);
+  const [task, setTask] = useState<string[]>(
+    () => {
+      const storedTasks = localStorage.getItem('task');
+
+      return storedTasks ? JSON.parse(storedTasks) : [];
+    });
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,6 +27,10 @@ function App() {
     const updatedTask = task.filter((_, i) => i !== index)
     setTask(updatedTask)
   }
+
+  useEffect(() => {
+    localStorage.setItem('task', JSON.stringify(task))
+  }, [task])
 
   return (
     <>
