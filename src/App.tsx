@@ -6,12 +6,10 @@ import Container from './components/Container/container';
 
 function App() {
   const [tarefa, setTarefa] = useState('');
-  const [task, setTask] = useState<string[]>(
-    () => {
-      const storedTasks = localStorage.getItem('task');
-
-      return storedTasks ? JSON.parse(storedTasks) : [];
-    });
+  const [task, setTask] = useState<string[]>(() => {
+    const storedTasks = localStorage.getItem('task');
+    return storedTasks ? JSON.parse(storedTasks) : [];
+  });
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
