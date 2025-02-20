@@ -34,20 +34,6 @@ export const Lista = styled.ul`
     gap: 1rem;
 `
 
-export const ListItem = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem;
-
-    > li {
-        list-style: none;
-    }
-    background-color: #fff;
-`
-
 export const input = styled.input`
     padding: .6rem;
     border: 1px solid #6d6d6d;

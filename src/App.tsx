@@ -3,6 +3,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Header from './components/Header/header';
 import Container from './components/Container/container';
+import ListItem from './components/ListItem/list-item';
 
 function App() {
   const [tarefa, setTarefa] = useState('');
@@ -52,12 +53,10 @@ function App() {
           </S.Nav>
           <S.Lista>
             {task.map((tarefa, index) => (
-              <>
-                <S.ListItem>
-                  <li key={index}>{tarefa}</li>
-                  <IoMdClose onClick={() => onDelete(index)} cursor={'pointer'} />
-                </S.ListItem>
-              </>
+              <ListItem>
+                <li key={index}>{tarefa}</li>
+                <IoMdClose onClick={() => onDelete(index)} cursor={'pointer'} />
+              </ListItem>
             ))}
           </S.Lista>
         </Container>
